@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~@fontsource/montserrat/index.css";
+@import "@/styles/variables";
+
+* {
+  font-family: montserrat;
+}
+
+nav {
+  background-color: $color_primary;
+
+  img {
+    width: 45px;
+  }
+}
+
+.discs_container {
+  background-color: $color_secondary;
+
+  .container {
+    flex-wrap: wrap; 
+
+    .card {
+      background-color: $color_primary;
+      color: white;
+
+      p {
+        color: $text_primary;
+      }
+    }
+  }
+}
