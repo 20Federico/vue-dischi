@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <nav>
-      <img class="py-3 ps-3" src="@/assets/logo-small.svg" alt="spotify logo">
-    </nav>
+    <Header></Header>
     <DiscsContainer></DiscsContainer>
   </div>
 </template>
@@ -10,17 +8,18 @@
 <script>
 import 'bootstrap';
 import DiscsContainer from './components/DiscsContainer.vue';
+import Header from './components/Header.vue';
 
 export default {
   name: 'App',
   components: {
-    DiscsContainer
-    
+    DiscsContainer,
+    Header
   }
 }
 </script>
 
 <style lang="scss">
-@import "@/styles/app"
+  @import "@/styles/app"
 
 </style>

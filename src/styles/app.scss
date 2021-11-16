@@ -8,14 +8,16 @@
 
 nav {
   background-color: $color_primary;
+  height: 80px;
 
   img {
-    width: 45px;
+    height: 100%;
   }
 }
 
 .discs_container {
   background-color: $color_secondary;
+  min-height: calc(100vh - $nav_height);
 
   .container {
     flex-wrap: wrap; 
@@ -27,6 +29,45 @@ nav {
       p {
         color: $text_primary;
       }
+    }
+  }
+}
+
+
+.filters_container {
+
+  select {
+    border-radius: 10px;
+  }
+  button {
+    border-radius: 10px;
+    font-weight: bold;
+  }
+}
+
+
+.loader_container {
+
+  width: 100%;
+  height: calc(100vh - $nav_height);
+  position: absolute;
+  z-index: 99;
+  background-color: $color_secondary;
+
+  img {
+    width: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0);
+    animation: loading 1s linear infinite;
+  }
+  @keyframes loading {
+    from {
+      transform: translate(-50%, -50%) rotate(0);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg)
     }
   }
 }
