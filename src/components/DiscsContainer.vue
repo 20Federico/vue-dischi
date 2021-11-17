@@ -3,7 +3,7 @@
     <div class="container d-flex justify-content-around">
       <Loader v-if="loading"></Loader>
       <Filters @toFilter="genreToFilter" :genres="genreList"></Filters>
-      <Card :disc="disc" v-for="(disc, i) in filteredDiscList" :key="i"></Card>
+      <Card :disc="disc" v-for="(disc, i) in toFilterGenre" :key="i"></Card>
     </div>
   </div>
 </template>
@@ -25,17 +25,21 @@ export default {
     return {
       loading: true,
       discList: "",
-      filteredDiscList: [],
-      genreList: []
+      genreList: [],
+      selectedGenre: ""
     }
   },
   methods: {
     genreToFilter(toSearchGenre) {
-      console.log('function');
-      if (toSearchGenre === 'Tutti') {
-        this.filteredDiscList = this.discList   
+      this.selectedGenre = toSearchGenre
+    }
+  },
+  computed: {
+    toFilterGenre() {
+      if (this.selectedGenre === 'Tutti' || !this.selectedGenre) {
+        return this.discList   
       } else {
-        this.filteredDiscList = this.discList.filter(element => element['genre'] === toSearchGenre )
+        return this.discList.filter(element => element['genre'] === this.selectedGenre )
       }
     }
   },
@@ -43,7 +47,6 @@ export default {
     axios.get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((resp) => {
         this.discList = resp.data.response;
-        this.filteredDiscList = this.discList
         setTimeout(() => {
         return this.loading = false;
         }, 500)
